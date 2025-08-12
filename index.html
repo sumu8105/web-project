@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SmartSearch — Login / Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="auth-page">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="logo">🔍</div>
+        <h1>SmartSearch</h1>
+        <p class="muted">AI-powered search & image recognition</p>
+      </div>
+
+      <div class="tabs">
+        <button id="tab-login" class="tab active" onclick="showTab('login')">Login</button>
+        <button id="tab-register" class="tab" onclick="showTab('register')">Register</button>
+      </div>
+
+      <!-- LOGIN -->
+      <section id="login" class="tab-panel">
+        <input id="login-username" type="text" placeholder="Username" autocomplete="username">
+        <input id="login-password" type="password" placeholder="Password" autocomplete="current-password">
+        <div class="row">
+          <button class="btn primary" onclick="login()">Login</button>
+        </div>
+        <p id="login-error" class="input-error"></p>
+      </section>
+
+      <!-- REGISTER -->
+      <section id="register" class="tab-panel" style="display:none;">
+        <input id="reg-username" type="text" placeholder="Choose a username" autocomplete="username">
+        <input id="reg-password" type="password" placeholder="Choose a password" autocomplete="new-password">
+        <div class="row">
+          <button class="btn primary" onclick="registerUser()">Create account</button>
+        </div>
+        <p id="reg-message" class="input-error"></p>
+      </section>
+
+      <footer class="auth-footer">
+        <p class="muted">This demo stores credentials in your browser (localStorage). For production use a secure backend / auth provider.</p>
+      </footer>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
