@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register - Car Dashboard</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      color: #eee;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 0;
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1s ease forwards;
+      padding: 1rem;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .card {
+      background: rgba(20,20,20,0.85);
+      padding: 2.5rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.8);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: #f0a500;
+      text-transform: uppercase;
+    }
+    label {
+      display: block;
+      text-align: left;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #ccc;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 1.2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #222;
+      color: #eee;
+      outline: none;
+      transition: 0.3s;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      background: #333;
+      box-shadow: 0 0 8px #f0a500;
+    }
+    button {
+      background: #f0a500;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #111;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease;
+      margin-top: 0.3rem;
+    }
+    button:hover {
+      background: #c47f00;
+    }
+    .bottom-text {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+    .bottom-text a {
+      color: #f0a500;
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s;
+    }
+    .bottom-text a:hover {
+      color: #c47f00;
+    }
+    .error {
+      background: #b00020;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 480px) {
+      .card {
+        padding: 2rem 1.5rem;
+        max-width: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form class="card" id="registerForm" novalidate>
+      <h2>Create Account</h2>
+      <div id="errorMsg" class="error" style="display:none;"></div>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" autocomplete="username" required />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="new-password" required />
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password" required />
+      <button type="submit">Register</button>
+      <p class="bottom-text">Already have an account? <a href="login.html">Login</a></p>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      errorMsg.style.display = 'none';
+
+      const username = form.username.value.trim();
+      const password = form.password.value;
+      const confirmPassword = form.confirmPassword.value;
+
+      if(username.length < 3) {
+        showError('Username must be at least 3 characters.');
+        return;
+      }
+      if(password.length < 6) {
+        showError('Password must be at least 6 characters.');
+        return;
+      }
+      if(password !== confirmPassword) {
+        showError('Passwords do not match.');
+        return;
+      }
+
+      // Check if user exists
+      if(localStorage.getItem(`user_${username}`)) {
+        showError('Username already exists. Please login or use a different username.');
+        return;
+      }
+
+      // Save user credentials (NOTE: In real apps, never store plain passwords like this)
+      localStorage.setItem(`user_${username}`, password);
+
+      alert('Registration successful! Please login.');
+      window.location.href = 'login.html';
+    });
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
