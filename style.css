@@ -1,0 +1,99 @@
+:root{
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --accent:#3b82f6;
+  --muted:#6b7280;
+  --glass: rgba(255,255,255,0.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:#111827;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* AUTH PAGE */
+.auth-page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background: linear-gradient(180deg, #eef2ff 0%, #ffffff 100%);
+}
+.auth-card{
+  width:380px;
+  background:var(--card);
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(2,6,23,0.08);
+  padding:28px;
+}
+.brand{ text-align:center; margin-bottom:12px }
+.brand .logo{ font-size:36px }
+.brand h1{ margin:6px 0 0; font-size:20px }
+.brand .muted{ color:var(--muted); font-size:13px; margin-top:6px }
+
+.tabs{ display:flex; gap:8px; margin:18px 0; justify-content:center }
+.tab{ padding:8px 14px; background:transparent; border-radius:8px; border:1px solid transparent; cursor:pointer }
+.tab.active{ background:linear-gradient(90deg,var(--accent), #6366f1); color:white; box-shadow:0 6px 18px rgba(59,130,246,0.18) }
+
+.tab-panel{ display:flex; flex-direction:column; gap:10px }
+input[type="text"], input[type="password"]{
+  padding:12px; border-radius:8px; border:1px solid #e6e9ef; width:100%;
+  font-size:14px;
+}
+.row{ display:flex; gap:8px; justify-content:center; margin-top:6px }
+.btn{ padding:8px 12px; border-radius:8px; border:1px solid transparent; background:#f3f4f6; cursor:pointer }
+.btn.primary{ background:var(--accent); color:white; box-shadow:0 6px 14px rgba(59,130,246,0.12) }
+.input-error{ color:#ef4444; font-size:13px; height:18px }
+
+/* DASHBOARD */
+.app{ display:flex; min-height:100vh; }
+.sidebar{
+  width:260px; background:linear-gradient(180deg,#0f172a,#111827);
+  color: #e6eef8; padding:24px; display:flex; flex-direction:column; justify-content:space-between;
+}
+.logo-xl{ font-size:28px; margin-bottom:6px }
+.sidebar h2{ margin:0; font-size:18px; color:white }
+.nav{ margin-top:22px; display:flex; flex-direction:column; gap:8px }
+.nav-item{
+  color: #cbd5e1; padding:10px 12px; border-radius:8px; cursor:pointer; text-decoration:none; display:block;
+}
+.nav-item.active, .nav-item:hover{ background: rgba(255,255,255,0.04); color:white }
+
+.sidebar-bottom{ margin-top:20px; display:flex; flex-direction:column; gap:10px }
+.user-info{ display:flex; gap:10px; align-items:center }
+.avatar{ width:42px; height:42px; border-radius:10px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center }
+.user-name{ font-weight:600 }
+.user-small{ font-size:12px; color: #9ca3af }
+
+.main{ flex:1; display:flex; flex-direction:column }
+.topbar{ padding:20px; background: linear-gradient(180deg,#ffffff 0%, #f8fafc 100%); border-bottom: 1px solid #eef2ff; }
+.search-row{ display:flex; gap:12px; align-items:center }
+#globalSearch{ flex:1; padding:12px 14px; border-radius:10px; border:1px solid #e6eef8; font-size:14px }
+.search-actions{ display:flex; gap:8px }
+.content{ padding:20px; display:flex; gap:20px; flex-wrap:wrap }
+.cards{ display:flex; flex:1; gap:20px; flex-wrap:wrap; }
+.card{ background:var(--card); padding:16px; border-radius:12px; box-shadow:0 6px 22px rgba(8,15,30,0.04); flex:1; min-width:240px }
+.card h3{ margin:0 0 8px 0 }
+.preview{ max-width:100%; border-radius:10px; margin-top:10px; box-shadow:0 8px 18px rgba(2,6,23,0.06) }
+.stat{ min-width:220px; max-width:300px }
+.history{ list-style:none; padding:0; margin:0; max-height:180px; overflow:auto }
+.history li{ padding:6px 0; border-bottom:1px dashed #f1f6fb; font-size:14px; color:var(--muted) }
+
+/* results area */
+.results{ flex-basis:100%; margin-top:8px; padding:18px }
+.results-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px }
+.results-body{ min-height:120px; border-radius:8px; padding:12px; background: linear-gradient(180deg,#fbfdff,#ffffff) }
+
+/* responsive */
+@media(max-width:900px){
+  .sidebar{ display:none } 
+  .app{ flex-direction:column }
+  .content{ padding:12px }
+  .auth-card{ width:92% }
+}
